@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All About Loona :D</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Jersey+10&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+body {
+    font-family: 'Jersey 10', sans-serif;
+    background: #EFF2C0 url('https://i.ibb.co/gL4Y40GZ/image.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    color: #090A0B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	transition: 0.3s;
+}
+
+
+.myHeader {
+    background-image: url('https://i.ibb.co/d4NZnNzS/image-removebg-preview-32.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 17px;
+}
+.myHeader p {
+    font-size: 3rem;
+    color: #EFF2C0;
+    text-shadow: 1px 1px 5px black;
+    margin: 0;
+}
+
+.titles {
+    font-size: 2rem;
+    color: #EFF2C0;
+    text-shadow: 1px 1px 5px black;
+    text-align: center;
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 50px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 15px;
+	
+	
+}
+
+#likesDislikes-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.single-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px; /* keeps the button from shifting */
+}
+
+.single-column .info {
+    width: 100%;
+}
+
+.ld-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+	padding: 10px;
+	margin: 20px;
+    width: 200px; 
+}
+
+.ld-column .info {
+    width: 100%; 
+	text-align: left;
+}
+
+
+.info {
+	display: none;
+	background-color: rgba(255,255,255,0.8);
+    border: 2px solid #661615;
+    color: #661615;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 5px;
+	font-size: 18px;
+    font-family: 'Jersey 10', sans-serif;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.infoBtn, #clickMe{
+	background-color: #661615;
+    color: #EFF2C0;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 10px;
+	display: fixed;
+	
+}
+
+#clickMe {
+	border: 5px white solid; 
+}
+
+.infoBtn:hover { background-color: #090A0B; }
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 50px;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.2);
+	
+}
+
+.slider-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.slider-images {
+    width: 100%;
+	height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	margin-top: 20px;
+}
+.slider-images img {
+    max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+    display: none;
+	border-radius: 10px;
+}
+.slider-images img.active {
+    display: block;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.slider-dots .dot {
+    width: 12px;
+    height: 12px;
+    margin: 5px;
+    background-color: #661615;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.slider-dots .dot.active {
+    background-color: #EFF2C0;
+    border: 2px solid #661615;
+}
+
+.prevBtn, .nextBtn {
+    background-color: #661615;
+    color: #EFF2C0;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+.prevBtn:hover, .nextBtn:hover { background-color: #090A0B; }
+
+.art-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+.art-grid img {
+    width: 30%; 
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #661615;
+    background-color: #090A0B20;
+    transition: transform 0.2s ease;
+}
+
+.art-grid img:hover {
+    transform: scale(1.05);
+}
+
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 20px 0;
+    background-color: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+}
+
+#commentInput {
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #661615;
+    margin-right: 10px;
+}
+
+#addCommentBtn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #661615;
+    color: #EFF2C0;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#addCommentBtn:hover { background-color: #090A0B; }
+
+#commentsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #EFF2C0;
+    border: 1px solid #661615;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 95%;
+    word-wrap: break-word;
+	 
+}
+
+#switchThemeBtn {
+    position: fixed;
+    bottom: 20px;   
+    right: 20px;    
+    background-color: #661615;
+    color : #EFF2C0;
+    border: 2px solid white;
+    padding: 15px 20px;
+    border-radius: 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+#switchThemeBtn:hover {
+    background-color: #090A0B;
+}
+
+.theme2 {
+	font-family: 'Jacquard 12', sans-serif;
+    background: #EFF2C0 url('https://i.ibb.co/7dLJLQ9m/7325f05faeb767c9cb19c85140fd65be.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	justify-content: space-evenly;
+}
+
+.theme2 .myHeader {
+	background-image: url('https://i.ibb.co/RkG4VBkk/image-removebg-preview-34.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 25px;
+	margin: 0;
+}
+
+.theme2 .titles, .myHeader p {
+	color: white;
+	
+}
+
+.theme2 .slider-container {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.theme2 .text-container {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.theme2 .info {
+	background: white;
+}
+.theme2 button {
+	background: white;
+	color: #661615;
+}
+.theme2 .comment {
+	background-color: #661615;
+	font-family: Calibri; sans-serif;
+}
+
+.theme2 .comment-section {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.theme2 #addCommentBtn {
+	background: white;
+	color: #661615;
+}
+
+</style>
+
+<script>
+$(document).ready(function(){
+
+    $(".slider-container").each(function(){
+        let slider = $(this);
+        let images = slider.find(".slider-images img");
+        let dots = slider.find(".dot");
+        let current = 0;
+        let interval;
+
+        function showImage(index){
+            images.hide().removeClass("active");
+            $(images[index]).fadeIn(300).addClass("active");
+            dots.removeClass("active");
+            $(dots[index]).addClass("active");
+        }
+
+        slider.find(".nextBtn").click(function(){
+            current = (current + 1) % images.length;
+            showImage(current);
+        });
+
+        slider.find(".prevBtn").click(function(){
+            current = (current - 1 + images.length) % images.length;
+            showImage(current);
+        });
+
+        dots.click(function(){
+            current = $(this).data("index");
+            showImage(current);
+        });
+
+        function startSlider(){
+            interval = setInterval(function(){
+                current = (current + 1) % images.length;
+                showImage(current);
+            }, 5000);
+        }
+        function stopSlider(){ clearInterval(interval); }
+
+        slider.hover(stopSlider, startSlider);
+        startSlider();
+    });
+	
+	$(".infoBtn").click(function() {
+		$(this).next(".info").slideToggle();
+	});
+
+    $("#addCommentBtn").click(function(){
+        let text = $("#commentInput").val().trim();
+        if(text){
+            $("#commentsContainer").append("<div class='comment'>"+text+"</div>");
+            $("#commentInput").val("");
+        } else {
+            alert("Please write a comment!");
+        }
+    });
+	
+	$("#clickMe").click(function() {
+		alert("sorry sir joshua :c");
+	});
+
+    $("#commentInput").keypress(function(e){
+        if(e.which === 13) $("#addCommentBtn").click();
+    });
+	
+	$("#switchThemeBtn").click(function() {
+			$("body").toggleClass("theme2");
+	});
+});
+</script>
+</head>
+<body>
+
+<div class="myHeader">
+    <p>Hai!! Loona's Blog :3</p>
+</div>
+
+
+<div class="text-container">
+
+	<div class="single-column">
+		<button class="infoBtn">What's my name?</button>
+		<div class="info">
+			<p>My name is Luna B. Salangsang :3</p>
+		</div>
+	</div>
+
+	<div class="single-column">
+		<button class="infoBtn">How old am I?</button>
+			<div class="info">
+				<p>I'm 17 :,) <br> Birthday on January 4th, 2008 btw</p>
+			</div>
+	</div>
+	
+	<div id="likesDislikes-container">
+
+    <div class="ld-column">
+        <button class="infoBtn">Likes</button>
+        <div class="info">
+            <p>*in no particular order</p>
+            <ul>
+                <li>Red</li>
+                <li>Math</li>
+                <li>Books</li>
+                <li>I love Mob Psycho 100%</li>
+                <li>Hello Kitty</li>
+                <li>Art!!</li>
+                <li>Photobooths</li>
+                <li>Emoticons :D</li>
+                <li>Reaction pictures</li>
+                <li>My family and friends</li>
+                <li>Spicy food</li>
+                <li>Cute things</li>
+                <li>Spiders</li>
+                <li>Baking</li>
+                <li>Sweets (๑ᵔ⤙ᵔ๑)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ld-column">
+        <button class="infoBtn">Dislikes</button>
+        <div class="info">
+            <p>*in no particular order</p>
+            <ul>
+                <li>Not smelling good</li>
+                <li>School</li>
+				<li>Getting old</li>
+                <li>Overly crowded places</li>
+                <li>Overlapping voices</li>
+                <li>Centipedes</li>
+                <li>Not sleeping :(</li>
+                <li>Cramming</li>
+                <li>STI</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+	
+	<div>
+		<button id="clickMe">Click Me!!!</button>
+	</div>
+	
+</div>
+
+
+<div class="slider-container">
+
+    <button class="prevBtn">Previous</button>
+
+    <div class="slider-inner">
+	<p class="titles">My Favourite Boy:</p>
+        <div class="slider-images">
+            <img src="https://i.ibb.co/gbqcyJ17/image.png" class="active" alt="Mob normal">
+            <img src="https://i.ibb.co/YBwhwW2p/image.png" alt="Mob happy">
+            <img src="https://i.ibb.co/wFyfW3mz/image.png" alt="Mob sad">
+            <img src="https://i.ibb.co/99ZsyXP4/image.png" alt="Mob me">
+            <img src="https://i.ibb.co/Vh32QC9/image.png" alt="Mob angel">
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+        </div>
+    </div>
+
+    <button class="nextBtn">Next</button>
+</div>
+
+
+<div class="slider-container">
+    <button class="prevBtn">Previous</button>
+
+    <div class="slider-inner">
+	<p class="titles">My Favourite Shows:</p>
+        <div class="slider-images">
+            <img src="https://i.ibb.co/NhsQBYk/image.png" class="active" alt="Mob psycho 100%">
+            <img src="https://i.ibb.co/JwJxvJkz/image.png" alt="Saiki K">
+            <img src="https://i.ibb.co/nsBssNBb/image.png" alt="Ouran Host Club">
+            <img src="https://i.ibb.co/hJ0Nmmxn/image.png" alt="Kimi ni todoke">
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+        </div>
+    </div>
+
+    <button class="nextBtn">Next</button>
+</div>
+<p class="titles">☆ Some of my Artworks ☆</p>
+
+<div class="art-grid">
+    <img src="https://i.ibb.co/nsRvMBLD/Salangsang-Luna-ICT302.png">
+    <img src="https://i.ibb.co/kgJKGLpR/gse-diff.png">
+    <img src="https://i.ibb.co/LDgqqrV9/hbdl-2nd.png">
+     <img src="https://i.ibb.co/67D8gQks/float.png">
+    <img src="https://i.ibb.co/93dRRW8w/sipnayan-Logo-V2.png">
+    <img src="https://i.ibb.co/zVbkZKK9/d2a5bd55-0aca-4983-8f1a-df33452eb2dc.jpg">
+</div>
+
+<div class="comment-section">
+    <h2>Comments</h2>
+    <div style="display:flex; width:100%; justify-content:center;">
+        <input type="text" id="commentInput" placeholder="Please write your comment..." />
+        <button id="addCommentBtn">Add Comment</button>
+    </div>
+    <div id="commentsContainer"></div>
+</div>
+
+<button id="switchThemeBtn">★</button>
+<div id="popupContainer"></div>
+
+</body>
+</html>
